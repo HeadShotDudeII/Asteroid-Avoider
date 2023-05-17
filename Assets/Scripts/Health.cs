@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
     {
         asteroidSpawner.SetActive(false);
         gameOverHandler.SetActive(true);
-        gameOverHandler.GetComponent<GameOverHandler>().StopGame();
-        gameObject.SetActive(false);
+        gameOverHandler.GetComponent<GameOverHandler>().EndGame();
+        //gameObject.SetActive(false);
     }
 }

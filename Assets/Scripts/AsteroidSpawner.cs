@@ -10,10 +10,7 @@ public class AsteroidSpawner : MonoBehaviour
 
     private float spawnTimer;
 
-    void Start()
-    {
 
-    }
 
     // Update is called once per frame
     void Update()

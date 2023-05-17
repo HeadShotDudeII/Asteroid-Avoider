@@ -5,9 +5,16 @@ using UnityEngine.SceneManagement;
 public class GameOverHandler : MonoBehaviour
 {
     [SerializeField] GameObject asteroidSpawner;
+    [SerializeField] GameObject gameOverDisplay;
+
     [SerializeField] ScoreSystem scoreSystem;
     [SerializeField] TextMeshProUGUI scoreText;
-    // Start is called before the first frame update
+
+    public void Awake()
+    {
+        gameOverDisplay.SetActive(false);
+    }
+
     public void PlayAgain()
     {
         Debug.Log("PlayAgain");
@@ -22,12 +29,27 @@ public class GameOverHandler : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
-    public void StopGame()
+
+    // called when player die
+    public void EndGame()
     {
-        scoreText.text = "Your Score is: " + scoreSystem.GetFinalScore().ToString();
+        int finalScore = scoreSystem.EndTimer();
+        scoreText.text = $"Your Score is: {finalScore}";
         asteroidSpawner.SetActive(false);
+        gameOverDisplay.SetActive(true);
+
 
         //astroidspanwner stop
-        //show the gameover UI setActive
+        //show the gameove r UI setActive
     }
+
+    public void ContinueGame()
+    {
+        scoreSystem.StartTimer();
+        asteroidSpawner.SetActive(true);
+        gameOverDisplay.SetActive(false);
+
+
+    }
+
 }
